@@ -260,6 +260,7 @@ function createCSS(result, params) {
 function createImage(result, params) {
     if (!params.imgDest) { return; }
     mkdirp.sync(path.dirname(params.imgDest));
+    fs.unlinkSync(params.imgDest)
     var imgFileStream = fs.createWriteStream(params.imgDest,"binary");
     result.image.pipe(imgFileStream);
 
