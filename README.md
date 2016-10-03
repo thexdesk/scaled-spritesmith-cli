@@ -2,13 +2,17 @@
 Extension of spritesmith with cli capability and capability for generating css to scale images in sprite by taking in a handlebars template.
 Usage:
 In package.json
+
+```javascript
 "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "costar-sprite-smith --config imageSpriteConfig.js"
   }
+```
 
 imageSpriteConfig.js Structure:
 
+```javascript
 {
     src: imageSource, // array of glob patterns
     imgDest: './content/images/go-sell-sprite.png',
@@ -33,10 +37,13 @@ imageSpriteConfig.js Structure:
         }
     }
 }
+```
 
 resizeConfig Structure:
+
+```javascript
 {
-  "google-search": [ 18, 19 ],
+  "google-search": [ 18, 19 ], // generates icon-google-search
   "email": {
     "default": [ 29, 19 ],
     "small": [ 26, 17 ],
@@ -44,10 +51,7 @@ resizeConfig Structure:
   }, //generates classes icon-email-default,icon-email-small,icon-email-contacts
   "edit-icon": {
     "@": [ 15, 16 ],
-    "activity": [ 19, 20 ]
-  },
-  "loop-net": {
-    "@": [ 103, 25 ],
-    "prospect": [25, 25 ]
+    "activity": [ 19, 20 ] //geenrates classes icon-edit-icon, icon-edit-icon-activity
   }
 }
+```
