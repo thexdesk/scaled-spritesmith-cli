@@ -138,7 +138,7 @@ function persist(result, params) {
 
 function createCSS(result, params) {
     if (!params.cssDest) { return; }
-    var imgName =path.basename(params.imgDest);
+    var imgName = path.basename(params.imgDest);
     var cssName = path.basename(params.cssDest);
     var resize = loadresizeMap(params.resizeConfig);
     // START OF DUPLICATE CODE FROM grunt-spritesmith
@@ -260,8 +260,11 @@ function createCSS(result, params) {
 function createImage(result, params) {
     if (!params.imgDest) { return; }
     mkdirp.sync(path.dirname(params.imgDest));
-    fs.unlinkSync(params.imgDest)
-    var imgFileStream = fs.createWriteStream(params.imgDest,"binary");
+    try {
+        fs.unlinkSync(params.imgDest);
+    }
+    catch (err) { }
+    var imgFileStream = fs.createWriteStream(params.imgDest, "binary");
     result.image.pipe(imgFileStream);
 
     console.log('"%s" created.', params.imgDest);
