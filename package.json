@@ -1,5 +1,5 @@
 {
-  "name": "scaled-spritesmith-cli",
+  "name": "@costar/scaled-spritesmith-cli",
   "description": "Convert a set of images into a spritesheet and geenrate resizable CSS variables ",
   "version": "0.0.1",
   "author": {
@@ -34,5 +34,8 @@
   },
   "devDependencies": {
     "rimraf": "~2.2.6"
+  },
+  "publishConfig": {
+    "registry" : "http://npm.prd.costargroup.com/"
   }
 }
