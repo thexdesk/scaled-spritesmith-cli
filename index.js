@@ -89,46 +89,39 @@ if (Array.isArray(spriteConfig)) {
 
 function run(params) {
 
-    contra.waterfall([
-        function (next) {   
-          next(globby.sync(params.src));
-        },
-        function (files, next) {
+    globby(params.src).then(function(files){
+        // Determine the format of the image
+        var imgOpts = params.imgOpts || {};
+        var imgFormat = imgOpts.format || imgFormats.get(params.imgDest) || 'png';
 
-            // Determine the format of the image
-            var imgOpts = params.imgOpts || {};
-            var imgFormat = imgOpts.format || imgFormats.get(params.imgDest) || 'png';
+        // Set up the defautls for imgOpts
+        imgOpts = _.defaults({}, imgOpts, { format: imgFormat });
 
-            // Set up the defautls for imgOpts
-            imgOpts = _.defaults({}, imgOpts, { format: imgFormat });
+        var spritesmithParams = {
+            src: files,
+            engine: params.engine,
+            algorithm: params.algorithm,
+            padding: params.padding || 0,
+            algorithmOpts: params.algorithmOpts || {},
+            engineOpts: params.engineOpts || {},
+            exportOpts: imgOpts
+        };
 
-            var spritesmithParams = {
-                src: params.src,
-                engine: params.engine,
-                algorithm: params.algorithm,
-                padding: params.padding || 0,
-                algorithmOpts: params.algorithmOpts || {},
-                engineOpts: params.engineOpts || {},
-                exportOpts: imgOpts
-            };
-
+        try{
             var spritesmith = new Spritesmith(spritesmithParams);
             // Otherwise, validate our images line up
             spritesmith.createImages(files, function handleImages(err, images) {
                 // Process our images now
                 var result = spritesmith.processImages(images, spritesmithParams);
-                next(null, result);
+                persist(result, params);
             });
-        }
-    ], handle);
 
-    function handle(err, result) {
-        if (err) {
-            console.log(err);
+        }
+        catch(err){
             throw err;
         }
-        persist(result, params);
-    }
+    });
+      
 }
 
 function persist(result, params) {
@@ -248,9 +241,9 @@ function createCSS(result, params) {
             name: params.cssSpritesheetName
         }
     }, {
-            format: cssFormat,
-            formatOpts: params.cssOpts || {}
-        });
+        format: cssFormat,
+        formatOpts: params.cssOpts || {}
+    });
     // END OF DUPLICATE CODE FROM grunt-spritesmith  
     mkdirp.sync(path.dirname(params.cssDest));
     fs.writeFileSync(params.cssDest, cssStr, 'utf8');

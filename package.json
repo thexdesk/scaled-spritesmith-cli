@@ -1,7 +1,7 @@
 {
   "name": "@costar/scaled-spritesmith-cli",
   "description": "Convert a set of images into a spritesheet and geenrate resizable CSS variables ",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "author": {
     "name": "Vinay Rali"
   },
