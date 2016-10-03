@@ -13,7 +13,7 @@ var templater = require('spritesheet-templates');
 var Spritesmith = require('spritesmith');
 var url = require('url2');
 var contra = require('contra');
-var multi = require('multi-glob');
+var multi = require('multiglob');
 var spriteConfig = require(path.resolve(argv.config));
 
 function ExtFormat() {
@@ -90,8 +90,8 @@ if (Array.isArray(spriteConfig)) {
 function run(params) {
 
     contra.waterfall([
-        function (next) {
-            multi.glob(params.src, next);
+        function (next) {            
+            multi.async(params.src,null. next);
         },
         function (files, next) {
 
