@@ -1,0 +1,38 @@
+{
+  "name": "scaled-spritesmith-cli",
+  "description": "Convert a set of images into a spritesheet and geenrate resizable CSS variables ",
+  "version": "0.0.1",
+  "author": {
+    "name": "Vinay Rali"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CoStarGroup/scaled-spritesmith-cli.git"
+  },
+  "bin": {
+    "scaled-spritesmith" : "./index.js"
+  },
+  "main": "index.js",
+  "engines": {
+    "node": ">= 0.10.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "async": "~0.9.0",
+    "minimatch": "~2.0.4",
+    "spritesheet-templates": "~10.0.0",
+    "spritesmith": "~3.1.0",
+    "through2": "~0.6.1",
+    "underscore": "~1.6.0",
+    "url2": "~1.0.4",
+    "yargs": "~5.0.0",
+    "mkdirp": "^0.5.0",
+    "multi-glob": "^0.4.0",
+    "contra": "^1.6.10"
+  },
+  "devDependencies": {
+    "rimraf": "~2.2.6"
+  }
+}
