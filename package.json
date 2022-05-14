@@ -10,7 +10,7 @@
     "url": "https://github.com/CoStarGroup/scaled-spritesmith-cli.git"
   },
   "bin": {
-    "scaled-spritesmith" : "./index.js"
+    "scaled-spritesmith": "./index.js"
   },
   "main": "index.js",
   "engines": {
@@ -36,6 +36,6 @@
     "rimraf": "~2.2.6"
   },
   "publishConfig": {
-    "registry" : "http://npm.prd.costargroup.com/"
+    "registry": "http://npm.prd.costargroup.com/"
   }
 }
